@@ -18,11 +18,6 @@ const loading = (isLoading) => {
     }
 
 }
-// function searchHandler2(){
-//     const searchField=document.getElementById("searchField2");
-//     searchText=searchField.value;
-//     loadPhone(searchText);
-// }
 const loadPhone = async (searchText, isShowAll) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
     const data = await res.json();
@@ -32,7 +27,6 @@ const loadPhone = async (searchText, isShowAll) => {
 }
 loadPhone(searchText);
 const displayPhones = (phones, isShowAll) => {
-    //console.log(phones);
     const phoneContainer = document.getElementById("phone-container");
     phoneContainer.textContent = '';
 
@@ -45,14 +39,11 @@ const displayPhones = (phones, isShowAll) => {
     else {
         showAll.classList.add('hidden');
     }
-    //display first 10
     if (!isShowAll) {
         phones = phones.slice(0, 12);
     }
 
     phones.forEach(phone => {
-        //console.log(phone);
-        //1 create a div
         const phoneCard = document.createElement('div');
         phoneCard.classList = `card bg-base-100 shadow-xl p-5`;
         phoneCard.innerHTML = `
@@ -71,18 +62,7 @@ const displayPhones = (phones, isShowAll) => {
         phoneContainer.appendChild(phoneCard);
 
     });
-    //hide loading spinner
     loading(false);
-    // function noItem(isNoItem)
-    // {
-    //     if(isNoItem){
-    //         const noItemContainer=document.getElementById("noItem");
-    //         noItemContainer.classList.remove('hidden');
-    //     }
-    //     else{
-    //         noItemContainer.classList.add('hidden');
-    //     }
-    // }
 }
 
 // show All Button
@@ -91,7 +71,6 @@ function showBtn() {
 }
 // Show Details
 const showDetailsHandler = async (id) => {
-    //console.log(id);
     // load data
     const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
     const data = await res.json();
@@ -116,11 +95,6 @@ const showPhoneDetails = (details) => {
     console.log(details.image);
     let string = "";
     for (const key in features) {
-
-        //detailsSpec.innerHTML=`${features[key]} <br>`;
-
-        //detailsSpec.innerText=`${features[key]} <br>`;
-        //console.log(`${key}:${features[key]}`);
         string = string + `${key}: ${features[key]} \n`;
 
     }
